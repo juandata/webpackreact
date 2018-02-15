@@ -2,7 +2,9 @@ import React from 'react';
 
 import {saluda, despidete, reallyReallyLongModuleExportName as shortName} from './testingModules/exportingModules';
 import * as variasFunciones from './testingModules/exportingModules1';
-import './assets/css/input.css';
+//import './input.scss';
+
+import './assets/css/input.scss';
 
 
 
@@ -68,7 +70,7 @@ import './assets/css/input.css';
   render(){
     return (
       <div>
-      <h1>The below input is a controlled component, react is the source of truth of the input form </h1>
+      <h1 id="title">The below input is a controlled component, react is the source of truth of the input form </h1>
       <input  value={this.state.input} onChange={this.handleChange}/>
       <h1>Below we have a call to the state new value from inside the child return render method</h1>
       <h4>{this.state.input}</h4>

@@ -1,3 +1,5 @@
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = {
  entry: "./index.js",
  output: {
@@ -17,8 +19,8 @@ module.exports = {
        }
      },
      {
-       test: /\.css$/,
-       use: [ 'style-loader', 'css-loader' ]
+       test: /\.scss$/,
+       use: ExtractTextPlugin.extract('css-loader!sass-loader') //[ 'style-loader', 'css-loader', 'sass-loader' ]
      },
      {
        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
@@ -27,8 +29,16 @@ module.exports = {
          limit: 10000
        }
      }
-   ]
+
+   ],
+
  },
+ plugins: [
+       new ExtractTextPlugin('public/style.css', {
+           allChunks: true
+       })
+   ],
+
  resolve: {
    extensions: ['.js', '.es6']
  },
