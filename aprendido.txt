@@ -1,0 +1,27 @@
+Webpack es un module bundler.
+
+Sirve para crear un archivo bundle que tendrá todos los assets que conformarán la aplicación, algo similar a lo que hace
+npm run build en React. Los archivos básicos para que webpack funcione son un index.html desde donde se declara un  script con src
+bundle.js justo encima del body y un archivo js (por ejemplo app.js) el cual tendrá la lógica necesaria para que funcione la aplicación.
+El otro archivo es la configuración de webpack, el cual es un archivo webpack.config.js, en este archivo se indica dentro del método
+module.exports = {} los objetos que configuran método webpack (desde la consola). Las propiedes básicas del objeto son entry y output,
+las cuales indican la entrada (app.js) y la salida (bundle.js) después de que se ejecute webpack, la propiedad watch es opcional,
+esta sirve para  realizar un watchmode y rebuild el archivo bundle.js cada vez que se realice un cambio en app.js o cualquier
+otro archivo que deba compilarse con el comando webpack.
+
+Webpack viene con un servior de desarrollo, para ejecutarlo ingresar el siguiente comando:
+webpack-dev-server
+con esto la aplicación debería correr en localhost://8080 y cualquier cambio a la misma
+debería reflejarse inmediatamente gracias a watch (hot-loading). Si esto no funciona recordar
+que es necesario instalar primero con el npm al servidor: npm install webpack-dev-server -g
+
+Para añadir loaderes, lo cual es similar a tasks en otros bundles es necesario ahora instalar node modules en el proyecto.
+Para este proyecto en particular instalaré Babel y JShint, para lograrlo debo primero usar npm init, el cual genera
+un archivo package.json que contendrá las dependencias y configuración de mi aplicación.
+
+Una vez finalizado esto, es ahora necesario instalar las dependencias de desarrollo que tendrá mi aplicación.
+Por ejemplo: npm install babel-core babel-loader jshint jshint-loader node-libs-browser babel-preset-es2015 babel-preset-react webpack  --save-dev
+
+2. Muy importante, añadir react una vez webpack está configurado:
+
+1: npm install react react-dom --save
