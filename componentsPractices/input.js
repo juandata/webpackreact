@@ -1,12 +1,11 @@
 import React from 'react';
-
-import {saluda, despidete, reallyReallyLongModuleExportName as shortName} from './testingModules/exportingModules';
-import * as variasFunciones from './testingModules/exportingModules1';
-//import './input.scss';
-
-import './assets/css/input.scss';
+//business logic
+import {saluda, despidete, reallyReallyLongModuleExportName as shortName} from '../testingModules/exportingModules';
+import * as variasFunciones from '../testingModules/exportingModules1';
 
 
+//stylesheets
+import '../assets/sass/components/input.scss';
 
  export class Input extends React.Component {
 
@@ -26,7 +25,7 @@ import './assets/css/input.scss';
 
    callFunction1(){
      saluda(); despidete();
-     console.log("My age is: " + variasFunciones.suma(24,5) + "The rest is : " + variasFunciones.restar(30,20));
+     console.log("My age is: " + variasFunciones.suma(24,5) + "The rest function is : " + variasFunciones.restar(30,20));
      shortName();
    }
    callAjax(){

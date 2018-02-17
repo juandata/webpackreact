@@ -1,0 +1,15 @@
+@import '../helpers/themeColors';
+
+#todoApp {
+  text-align: center;
+  background-color: $second-ThemeColor;
+form {
+  border : solid $second-ThemeColor;
+  ul, button {
+    background-color: $main-ThemeColor;
+    list-style: none;
+     }
+     button { cursor: pointer;}
+     .X {color: $second-ThemeColor; cursor: pointer;}
+   }
+}

@@ -1,0 +1,9 @@
+@import '../helpers/themeColors';
+
+
+
+
+  h1, h2 {
+      color: $second-ThemeColor;
+      background-color: $main-ThemeColor;
+  }

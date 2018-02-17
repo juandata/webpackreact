@@ -1,2 +1,1 @@
-h1 {
-  background-color: silver; }
+#todoApp{text-align:center;background-color:red}#todoApp form{border:solid red}#todoApp form button,#todoApp form ul{background-color:#f3e2c7;cursor:pointer;list-style:none}

@@ -1,8 +1,11 @@
 
 import React, {Component} from "react";
-import {Input} from "./input";
+import {Input} from "./componentsPractices/input";
+import {TodoApp} from "./componentsPractices/todoApp";
 
-var primaryColor = "gray ";
+
+//stylesheets
+import './assets/sass/pages/app.scss';
 
 class App extends Component {
   constructor(props){
@@ -10,18 +13,23 @@ class App extends Component {
     this.state = { receivedChanged : "This will update"};
     this.receiveChange = this.receiveChange.bind(this);
     }
-
+    //HERE V refers to the new value being transmited from the child component
     receiveChange(v){
-      console.log(v);
       this.setState({ receivedChanged : v});
     }
 
   render(){
     return (
       <div>
-      <Input theChanged={this.receiveChange}/>
-      <h1 >Below we render the new state in the parent, the state comes from the props of the input child above</h1>
-      <h1 style={{backgroundColor : primaryColor}}>{this.state.receivedChanged}</h1>
+      <div className="component">
+        <Input theChanged={this.receiveChange}/>
+        <h1 >Below we render the new state in the parent, the state comes from the props of the input child above</h1>
+        <h1>{this.state.receivedChanged}</h1>
+        </div>
+        <div className="component">
+          <h1>Experiments below </h1>
+          <div><TodoApp /></div>
+          </div>
       </div>
     )
   }
