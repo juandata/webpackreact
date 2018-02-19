@@ -1,6 +1,135 @@
 import React from 'React';
 
 import "../assets/sass/components/productTable.scss";
+
+var myObj = "";
+var component;
+var jsonItems = [];
+export class ProductTable extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state = { text : "", inStock : false, price : "", items : []}
+     component = this;
+
+  }
+
+    componentDidMount(){
+
+        var xhttp0;
+        if (window.XMLHttpRequest) {
+       // code for modern browsers
+         xhttp0 = new XMLHttpRequest();
+         } else {
+       // code for old IE browsers
+         xhttp0 = new ActiveXObject("Microsoft.XMLHTTP");
+         }
+         //create the ajax call with support for old IE browser too
+         xhttp0.onreadystatechange = function(){
+         if(this.readyState == 4 && this.status == 200){
+          myObj = JSON.parse(this.responseText);
+         //component.setState({ text : myObj.stock[1].name});
+         jsonItems = Array.from(myObj.stock)
+         component.setState({ items : jsonItems});
+
+          }
+        };
+        /*the math random below is for avoiding to get a cache result*/
+        xhttp0.open("GET", "serverFiles/stock.json?t=" + Math.random(), true);
+        xhttp0.send();
+
+    }
+
+  render() {
+  return (
+    <div id="productTable">
+    <SearchBar text={this.receiveText} inStock={this.receiveStock}/>
+    <Table inStock={this.state.inStock} category={this.state.text} price={this.state.price} items={this.state.items} />
+    </div>
+  )
+  }
+}
+
+class SearchBar extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = { text : "", inStock : false}
+    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeStock = this.handleChangeStock.bind(this);
+  }
+
+  handleChange(e){
+    this.setState({
+      text : e.target.value
+    });
+    this.props.text(this.state.text);
+  }
+  handleChangeStock(){
+    var stocked = this.state.inStock === false ? true : false;
+    this.setState({ inStock : stocked});
+    this.props.inStock(this.state.inStock);
+  }
+
+  render(){
+  return (
+    <div>
+    <input type="text" value={this.state.text} placeholder="search" onChange={this.handleChange}/>
+    <input type="checkbox" checked={this.state.inStock} onClick={this.handleChangeStock}/>
+    </div>
+  )
+ }
+}
+function Table(props){
+  var firstCategory = props.items[0].category;
+  return (
+    <table>
+    <tbody>
+      <tr>
+        <th>Name</th> <th>Price</th>
+      </tr>
+      {props.items.map((theItems, index) => {
+        if(theItems.category == firstCategory){
+
+        }
+      })}
+      <TableCategory category="Sporting Goods"/>
+      </tbody>
+
+    </table>
+  )
+
+}
+
+function TableCategory(props){
+  return (
+    <div>
+    <tr>
+      <th>{props.category}</th>
+    </tr>
+
+    </div>
+  )
+}
+/*
+function TableItems(props){
+
+
+  return (
+    <div>
+    <tr>
+      <td>item1</td> <td>price</td>
+    </tr>
+    </div>
+  )
+}
+
+{props.items.map((theitems, index) => {
+  return  <tr key={Date.now() + index} >
+      <td>{theitems.name}</td>
+      <td>{theitems.price}</td>
+    </tr>
+  })}
+*/
 //product table
 /*
 FilterableProductTable
@@ -34,67 +163,3 @@ ProductTable needs to filter the product list based on state and SearchBar needs
 The common owner component is FilterableProductTable.
 It conceptually makes sense for the filter text and checked value to live in FilterableProductTable
 */
-
-export class ProductTable extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = { text : "search a product", inStock : false}
-  }
-
-  render() {
-  return (
-    <div id="productTable">
-    <SearchBar text={this.state.text} inStock={this.state.inStock}/>
-    <Table text={this.state.text} inStock={this.state.inStock}/>
-    </div>
-  )
-  }
-}
-
-function SearchBar(props){
-  return (
-    <div>
-    <input type="text" value={props.text}/>
-    <input type="checkbox" checked={props.inStock}/>
-    </div>
-  )
-}
-
-function Table(props){
-  return (
-    <table>
-      <tr>
-        <th>Name</th> <th>Price</th>
-      </tr>
-      <TableCategory category="Sporting Goods"/>
-      <TableCategory category="Electronics"/>
-
-    </table>
-  )
-}
-function TableCategory(props){
-  return (
-    <div>
-    <tr>
-      <th>{props.category}</th>
-    </tr>
-    <TableItems/>
-    </div>
-  )
-}
-
-function TableItems(props){
-  return (
-    <div>
-    <tr>
-      <td>Football</td> <td>49.99</td>
-    </tr>
-    <tr>
-      <td>Football</td> <td>49.99</td>
-    </tr>
-    <tr>
-      <td>Football</td> <td>49.99</td>
-    </tr>
-    </div>
-  )
-}
