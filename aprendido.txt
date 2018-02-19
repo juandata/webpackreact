@@ -9,11 +9,14 @@ las cuales indican la entrada (app.js) y la salida (bundle.js) después de que s
 esta sirve para  realizar un watchmode y rebuild el archivo bundle.js cada vez que se realice un cambio en app.js o cualquier
 otro archivo que deba compilarse con el comando webpack.
 
+Lo primero que debe hacerse si en la máquina no se ha instalado webpack globalmente es ejecutar el siguiente comando:
+npm install webpack -g
+
 Webpack viene con un servior de desarrollo, para ejecutarlo ingresar el siguiente comando:
 webpack-dev-server
 con esto la aplicación debería correr en localhost://8080 y cualquier cambio a la misma
 debería reflejarse inmediatamente gracias a watch (hot-loading). Si esto no funciona recordar
-que es necesario instalar primero con el npm al servidor: npm install webpack-dev-server -g
+que es necesario instalar primero con el npm al servidor globalmente: npm install webpack-dev-server -g
 
 Para añadir loaderes, lo cual es similar a tasks en otros bundles es necesario ahora instalar node modules en el proyecto.
 Para este proyecto en particular instalaré Babel y JShint, para lograrlo debo primero usar npm init, el cual genera

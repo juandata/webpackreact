@@ -31,18 +31,28 @@ export class TodoApp extends React.Component {
       text : ""
     })
     );
+
   }
   handleChange(e){
     this.setState({ text : e.target.value});
   }
 
   handleupdate(received){
+    var theItems = this.state.items;
+    for(var x in this.state.items ){
+      if(this.state.items[x].id == received){
+        //delete theItems[x];
+        theItems.splice(x, 1);
+      }
+    }
+
     this.setState({
-      upid : received
+      items : theItems
     });
+
+
   }
   render(){
-
     return (
       <div id="todoApp">
       <h3>Below a TODO list </h3>
@@ -50,7 +60,7 @@ export class TodoApp extends React.Component {
       <TodoList value={this.state.items} updateid={this.handleupdate} />
       <input value={this.text} onChange={this.handleChange}/>
       <button  >add todo item</button>
-      </form>
+      </form><h1>{this.state.upid}</h1>
       </div>
     )
   }
@@ -69,9 +79,7 @@ class TodoList extends React.Component {
     this.setState({
       theId : e.target.parentNode.id
     });
-    e.target.parentNode.remove();
     this.props.updateid(this.state.theId);
-
   }
   render(){
 

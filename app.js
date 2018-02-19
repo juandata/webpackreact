@@ -2,7 +2,7 @@
 import React, {Component} from "react";
 import {Input} from "./componentsPractices/input";
 import {TodoApp} from "./componentsPractices/todoApp";
-
+import {ProductTable} from "./componentsPractices/ProductTable";
 
 //stylesheets
 import './assets/sass/pages/app.scss';
@@ -29,6 +29,7 @@ class App extends Component {
         <div className="component">
           <h1>Experiments below </h1>
           <div><TodoApp /></div>
+          <ProductTable />
           </div>
       </div>
     )

@@ -43,11 +43,14 @@ import '../assets/sass/components/input.scss';
         console.log("te method return the following: "+
         xhttp0.getAllResponseHeaders() + "the status is " + this.status
       );
-      document.getElementById("ajax").innerHTML = this.responseText;
+    //var   myObj = this.responseText;
+    var myObj = JSON.parse(this.responseText);
+      document.getElementById("ajax").innerHTML = myObj.stock[0].price;
+    //  document.getElementById("ajax").innerHTML = myObj;
       }
      };
      /*the math random below is for avoiding to get a cache result*/
-     xhttp0.open("GET", "ajaxTest.txt?t=" + Math.random(), true);
+     xhttp0.open("GET", "serverFiles/stock.json?t=" + Math.random(), true);
      xhttp0.send();
    }
    requestXML(){
