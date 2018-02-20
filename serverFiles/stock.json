@@ -9,7 +9,7 @@
   {"category": "Electronics", "price": "$199.99", "stocked": true, "name": "Nexus 7"},
   {"category": "Food", "price": "$14.99", "stocked": true, "name": "York Pepermint"},
   {"category": "Food", "price": "$23.99", "stocked": true, "name": "RXBAR"},
-  {"category": "Food", "price": "$9.99", "stocked": true, "name": "Quaker Avena"},
+  {"category": "Food", "price": "$9.99", "stocked": false, "name": "Quaker Avena"},
   {"category": "Games", "price": "$69.99", "stocked": true, "name": "Fifa 2018"}
 
 

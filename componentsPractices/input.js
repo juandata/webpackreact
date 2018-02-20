@@ -75,7 +75,7 @@ import '../assets/sass/components/input.scss';
       <input  value={this.state.input} onChange={this.handleChange}/>
       <h1>Below we have a call to the state new value from inside the child return render method</h1>
       <h4>{this.state.input}</h4>
-      <button onClick={this.callFunction1}>Click to call an external module function</button>
+      <button onClick={this.callFunction1}>Click to call external modules functions </button>
       <button onClick={this.callAjax}>Click to call an ajax function</button>
       <div id="ajax"></div>
       <button onClick={this.requestXML}>Request artist from cd catalog</button>

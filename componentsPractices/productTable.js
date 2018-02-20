@@ -6,15 +6,15 @@ var myObj = "";
 var component;
 var jsonItems = [];
 var theCategories = [];
+var filterItems = [];
 export class ProductTable extends React.Component {
 
   constructor(props){
     super(props);
     this.state = { text : "", inStock : false, price : "", items : []}
      component = this;
-
+     this.receiveText = this.receiveText.bind(this);
   }
-
     componentDidMount(){
 
         var xhttp0;
@@ -32,7 +32,6 @@ export class ProductTable extends React.Component {
          //component.setState({ text : myObj.stock[1].name});
          jsonItems = Array.from(myObj.stock)
          component.setState({ items : jsonItems});
-
           }
         };
         /*the math random below is for avoiding to get a cache result*/
@@ -41,12 +40,15 @@ export class ProductTable extends React.Component {
 
     }
 
+    receiveText(e){
+      this.setState({ text : e});
+    }
 
   render() {
   return (
     <div id="productTable">
     <SearchBar text={this.receiveText} inStock={this.receiveStock}/>
-    <Table inStock={this.state.inStock} category={this.state.text} price={this.state.price} items={this.state.items} />
+    <Table  items={this.state.items} />
     </div>
   )
   }
@@ -91,23 +93,25 @@ function Table(props){
     }
     theCategories.reverse();
   }
+  var tableCategories = [];
+
   return (
+
     <table>
-    <tbody>
+    <thead>
       <tr>
         <th>Name</th> <th>Price</th>
       </tr>
+      </thead>
+      <tbody>
       {theCategories.map((cat, ind) => {
-        return <TableCategory category={cat} items={props.items} number={ind}/>
-
+      return <TableCategory category={cat} items={props.items} number={ind} key={Date.now() * Math.random()} />
       })}
       </tbody>
-
     </table>
   )
 
 }
-
 function TableCategory(props){
   return (
     <div>
@@ -118,20 +122,41 @@ function TableCategory(props){
     </div>
   )
 }
-
 function TableItems(props){
   return (
     <div>
       {props.items.map((it, ind) => {
         if(it.category == props.category){
-        return <tr><td>{it.name}</td> <td>{it.price}</td></tr>
-      }
+        if(it.stocked == false){
+          return <tr className="noStock"><td>{it.name}</td> <td>{it.price}</td></tr>
+        }
+        else { return <tr><td>{it.name}</td> <td>{it.price}</td></tr>}
+        }
       })}
-
-    </div>
+      </div>
   )
 }
+function TableNormal(props){
+  return (
+    <table>
+     <thead>
+      <tr><th>Name</th> <th>Price</th></tr>
+     </thead>
+     <tbody>
+      <tr><th>category 1</th></tr>
+      <tr><td>This is the product descr</td> <td>198.99</td></tr>
+      <tr><td>This is the product </td> <td>198.99</td></tr>
+      <tr><td>This is the </td> <td>8.99</td></tr>
 
+      <tr><th>category 2</th></tr>
+      <tr><td>This is </td> <td>19.99</td></tr>
+
+      <tr><th>category 3</th></tr>
+      <tr><td>This is the product descr</td> <td>198.99</td></tr>
+     </tbody>
+    </table>
+  )
+}
 
 
 //product table
