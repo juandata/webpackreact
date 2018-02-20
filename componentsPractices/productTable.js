@@ -5,6 +5,7 @@ import "../assets/sass/components/productTable.scss";
 var myObj = "";
 var component;
 var jsonItems = [];
+var theCategories = [];
 export class ProductTable extends React.Component {
 
   constructor(props){
@@ -80,19 +81,24 @@ class SearchBar extends React.Component {
  }
 }
 function Table(props){
-  var firstCategory = props.items[0].category;
+  if(props.items.length != 0){
+    theCategories.unshift(props.items[0].category);
+    for(var i = 0; i < props.items.length; i ++){
+      if(props.items[i].category != theCategories[0]){
+        theCategories.unshift(props.items[i].category);
+      }
+    }
+  }
   return (
     <table>
     <tbody>
       <tr>
         <th>Name</th> <th>Price</th>
       </tr>
-      {props.items.map((theItems, index) => {
-        if(theItems.category == firstCategory){
+      {theCategories.map(cat => {
+        return <TableCategory category={cat}/>
 
-        }
       })}
-      <TableCategory category="Sporting Goods"/>
       </tbody>
 
     </table>
