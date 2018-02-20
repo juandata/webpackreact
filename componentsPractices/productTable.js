@@ -123,9 +123,12 @@ function TableItems(props){
 
   return (
     <div>
-    <tr>
-      <td>name</td> <td>price</td>
-    </tr>
+      {props.items.map((it, ind) => {
+        if(it.category == props.category){
+        return <tr><td>{it.name}</td> <td>{it.price}</td></tr>
+      }
+      })}
+
     </div>
   )
 }
