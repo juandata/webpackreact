@@ -88,6 +88,7 @@ function Table(props){
         theCategories.unshift(props.items[i].category);
       }
     }
+    theCategories.reverse();
   }
   return (
     <table>
@@ -95,8 +96,8 @@ function Table(props){
       <tr>
         <th>Name</th> <th>Price</th>
       </tr>
-      {theCategories.map(cat => {
-        return <TableCategory category={cat}/>
+      {theCategories.map((cat, ind) => {
+        return <TableCategory category={cat} items={props.items} number={ind}/>
 
       })}
       </tbody>
@@ -112,32 +113,33 @@ function TableCategory(props){
     <tr>
       <th>{props.category}</th>
     </tr>
-
+    <TableItems category={props.category} items={props.items} id={props.number}/>
     </div>
   )
 }
-/*
+
 function TableItems(props){
 
 
   return (
     <div>
     <tr>
-      <td>item1</td> <td>price</td>
+      <td>name</td> <td>price</td>
     </tr>
     </div>
   )
 }
 
+
+
+//product table
+/*
 {props.items.map((theitems, index) => {
   return  <tr key={Date.now() + index} >
       <td>{theitems.name}</td>
       <td>{theitems.price}</td>
     </tr>
   })}
-*/
-//product table
-/*
 FilterableProductTable
   SearchBar
   ProductTable
