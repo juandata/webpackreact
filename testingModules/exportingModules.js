@@ -1,3 +1,4 @@
+/* @flow */
 export function saluda(){
   console.log("Hola soy funcion saluda desde otro módulo. ")
 }

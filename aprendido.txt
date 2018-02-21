@@ -25,6 +25,10 @@ un archivo package.json que contendrá las dependencias y configuración de mi a
 Una vez finalizado esto, es ahora necesario instalar las dependencias de desarrollo que tendrá mi aplicación.
 Por ejemplo: npm install babel-core babel-loader jshint jshint-loader node-libs-browser babel-preset-es2015 babel-preset-react webpack  --save-dev
 
-2. Muy importante, añadir react una vez webpack está configurado:
+2. Muy importante, añadir react una vez webpack está configurado: npm install react react-dom --save
 
-1: npm install react react-dom --save
+3. Sobre typecheckers, si bien typeProps sirve para revisar que los componentes usen los datos que deberían,
+es mejor utilizar un typechecker más grande para proyectos más complejos. Por ejemplo, flow o typescript.
+https://reactjs.org/docs/static-type-checking.html
+npm install --save-dev flow-bin
+npm install remove-flow-types-loader --save-dev (webpack)

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "flow": "flow"
   },
   "author": "Juan David Tabares Arce",
   "license": "ISC",
@@ -16,10 +17,12 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.9",
     "extract-text-webpack-plugin": "^3.0.2",
+    "flow-bin": "^0.66.0",
     "jshint": "^2.9.5",
     "jshint-loader": "^0.8.4",
     "node-libs-browser": "^2.1.0",
     "node-sass": "^4.7.2",
+    "remove-flow-types-loader": "^1.1.0",
     "sass-loader": "^6.0.6",
     "strip-loader": "^0.1.2",
     "style-loader": "^0.20.1",
@@ -27,6 +30,7 @@
     "webpack": "^3.11.0"
   },
   "dependencies": {
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   }

@@ -1,9 +1,8 @@
-
 import React, {Component} from "react";
 import {InputTodo} from "./componentsPractices/inputsTodo";
 import {ProductTable} from "./componentsPractices/ProductTable";
 import {FilterableProductTable} from "./componentsPractices/ProductTableEx";
-import {EscogeColorAzul} from "./componentsPractices/learningReactJSX";
+import {EscogeColorAzul, CustomTextInput, NameForm} from "./componentsPractices/learningReactJSX";
 
 
 //stylesheets
@@ -27,7 +26,13 @@ class App extends Component {
           <InputTodo />
           <ProductTable />
           <FilterableProductTable products={PRODUCTS} />
+          <h1>Learning advanced react below: </h1>
           <EscogeColorAzul />
+          <div>
+          <h1>Refs and uncontrolled components</h1>
+          <CustomTextInput />
+          <NameForm />
+          </div>
       </div>
     )
   }

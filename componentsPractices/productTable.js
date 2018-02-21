@@ -1,6 +1,10 @@
 import React from 'React';
 
+import PropTypes from 'prop-types';
+
 import "../assets/sass/components/productTable.scss";
+
+
 
 var myObj = "";
 var component;
@@ -45,7 +49,7 @@ export class ProductTable extends React.Component {
       let filterNames = [];
       this.setState({ text : e});
       //console.log(this.state.items[0].name.includes(e));
-      this.state.items.map(function(it){
+      jsonItems.map(function(it){
         if(it.name.includes(e)){
           filterNames.push(it);
           component.setState({
@@ -53,7 +57,6 @@ export class ProductTable extends React.Component {
           });
         }
       });
-      console.log(filterNames, e);
     }
 
   render() {
@@ -94,7 +97,8 @@ class SearchBar extends React.Component {
     </div>
   )
  }
-}/*
+}
+/*
 function Table(props){
   if(props.items.length != 0){
     theCategories.unshift(props.items[0].category);
@@ -124,7 +128,6 @@ function Table(props){
 
 }*/
 
-
 class Table extends React.Component {
   constructor(props){
     super(props);
@@ -135,26 +138,12 @@ componentWillReceiveProps(nextProps){
   }
   else {
     updating= true;
+
   }
 }
 shouldComponentUpdate(nextProps, nextState){
   return updating;
 }
-
-  /*
-if(this.props.length != 0){
-  theCategories.unshift(this.props[0].category);
-  for(var i = 0; i < this.props.length; i ++){
-    if(this.props[i].category != theCategories[0]){
-      theCategories.unshift(this.props[i].category);
-    }
-  }
-  theCategories.reverse();
-*/
-
-
-
-
   render(){
 
     if(this.props.items.length != 0){
@@ -164,11 +153,9 @@ if(this.props.length != 0){
           theCategories.unshift(this.props.items[i].category);
         }
       }
+      console.log(this.props.items);
     }
       theCategories.reverse();
-
-
-
   return (
     <table>
     <thead>
@@ -178,16 +165,13 @@ if(this.props.length != 0){
       </thead>
       <tbody>
       {theCategories.map((cat, ind) => {
-        return <TableCategory category={cat} items={this.props.items} number={ind}/>
-
+        return <TableCategory id="tableCategory" category={cat} items={this.props.items} number={ind} key={ind}/>
       })}
       </tbody>
     </table>
   )
-
-}
-}
-
+    }
+  }
 
 function TableCategory(props){
   return (
@@ -205,9 +189,9 @@ function TableItems(props){
       {props.items.map((it, ind) => {
         if(it.category == props.category){
         if(it.stocked == false){
-          return <tr className="noStock" key={Date.now() * Math.random()}><td>{it.name}</td> <td>{it.price}</td></tr>
+          return <tr className="noStock" key={ind}><td>{it.name}</td> <td>{it.price}</td></tr>
         }
-        else { return <tr key={Date.now() * Math.random()}><td>{it.name}</td> <td>{it.price}</td></tr>}
+        else { return <tr key={ind}><td>{it.name}</td> <td>{it.price}</td></tr>}
         }
       })}
       </div>
@@ -235,15 +219,15 @@ function TableNormal(props){
   )
 }
 
+//checking PropTypes
+
+SearchBar.propTypes = {
+  inStock : PropTypes.bool
+}
+
 
 //product table
 /*
-{props.items.map((theitems, index) => {
-  return  <tr key={Date.now() + index} >
-      <td>{theitems.name}</td>
-      <td>{theitems.price}</td>
-    </tr>
-  })}
 FilterableProductTable
   SearchBar
   ProductTable
