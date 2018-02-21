@@ -14,22 +14,30 @@ const MyComponents = {
 
 
 function TheDiv(props){
-  let number;
+  let number; let suma;
   if(props.number % 2 == 0){
     number = <strong>PAR</strong>;
   }
   else {
     number= <i>IMPAR</i>;
   }
-  return  <h1>El número {props.number} is {number}< /h1>;
+
+  return (
+    <div>
+   <h1>El número {props.number} is {number}< /h1><br />
+   <h3>the props sum is {props.numeros.reduce(function(prev, act){return prev + act;})}</h3>
+
+   </div>
+)
 }
+
 
 export function EscogeColorAzul(props){
   return (
     <div>
     <MyComponents.EscogeColor color="green"/>
     <MyComponents.Boton />
-    <TheDiv number="30"/>
+    <TheDiv number="30" numeros={[2,4,5,6,13]}/>
     </div>
   )
 }

@@ -1,4 +1,7 @@
 class Table extends React.Component {
+  constructor(props){
+    super(props);
+  }
   if(this.props.items.length != 0){
     theCategories.unshift(this.props.items[0].category);
     for(var i = 0; i < this.props.items.length; i ++){
@@ -10,7 +13,7 @@ class Table extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    if(nextProps === this.this.props){
+    if(nextProps === this.props){
       return false;
     }
   }

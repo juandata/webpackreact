@@ -7,6 +7,7 @@ var component;
 var jsonItems = [];
 var theCategories = [];
 var filterItems = [];
+var updating = true;
 export class ProductTable extends React.Component {
 
   constructor(props){
@@ -82,7 +83,7 @@ class SearchBar extends React.Component {
     </div>
   )
  }
-}
+}/*
 function Table(props){
   if(props.items.length != 0){
     theCategories.unshift(props.items[0].category);
@@ -93,7 +94,6 @@ function Table(props){
     }
     theCategories.reverse();
   }
-  var tableCategories = [];
 
   return (
 
@@ -111,7 +111,73 @@ function Table(props){
     </table>
   )
 
+}*/
+
+
+class Table extends React.Component {
+  constructor(props){
+    super(props);
+  }
+componentWillReceiveProps(nextProps){
+  if(this.props.items == nextProps.items){
+    updating = false;
+  }
+  else {
+    updating= true;
+  }
 }
+shouldComponentUpdate(nextProps, nextState){
+  return updating; 
+}
+
+  /*
+if(this.props.length != 0){
+  theCategories.unshift(this.props[0].category);
+  for(var i = 0; i < this.props.length; i ++){
+    if(this.props[i].category != theCategories[0]){
+      theCategories.unshift(this.props[i].category);
+    }
+  }
+  theCategories.reverse();
+*/
+
+
+
+
+  render(){
+
+    if(this.props.items.length != 0){
+      theCategories.unshift(this.props.items[0].category);
+      for(var i = 0; i < this.props.items.length; i ++){
+        if(this.props.items[i].category != theCategories[0]){
+          theCategories.unshift(this.props.items[i].category);
+        }
+      }
+    }
+      theCategories.reverse();
+
+
+
+  return (
+    <table>
+    <thead>
+      <tr>
+        <th>Name</th> <th>Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      {theCategories.map((cat, ind) => {
+        return <TableCategory category={cat} items={this.props.items} number={ind}/>
+
+      })}
+      </tbody>
+    </table>
+  )
+
+}
+}
+
+
 function TableCategory(props){
   return (
     <div>
@@ -128,9 +194,9 @@ function TableItems(props){
       {props.items.map((it, ind) => {
         if(it.category == props.category){
         if(it.stocked == false){
-          return <tr className="noStock"><td>{it.name}</td> <td>{it.price}</td></tr>
+          return <tr className="noStock" key={Date.now() * Math.random()}><td>{it.name}</td> <td>{it.price}</td></tr>
         }
-        else { return <tr><td>{it.name}</td> <td>{it.price}</td></tr>}
+        else { return <tr key={Date.now() * Math.random()}><td>{it.name}</td> <td>{it.price}</td></tr>}
         }
       })}
       </div>
