@@ -42,7 +42,18 @@ export class ProductTable extends React.Component {
     }
 
     receiveText(e){
+      let filterNames = [];
       this.setState({ text : e});
+      //console.log(this.state.items[0].name.includes(e));
+      this.state.items.map(function(it){
+        if(it.name.includes(e)){
+          filterNames.push(it);
+          component.setState({
+            items : filterNames
+          });
+        }
+      });
+      console.log(filterNames, e);
     }
 
   render() {
@@ -127,7 +138,7 @@ componentWillReceiveProps(nextProps){
   }
 }
 shouldComponentUpdate(nextProps, nextState){
-  return updating; 
+  return updating;
 }
 
   /*
