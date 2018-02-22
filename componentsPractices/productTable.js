@@ -175,17 +175,17 @@ shouldComponentUpdate(nextProps, nextState){
 
 function TableCategory(props){
   return (
-    <div>
+    <React.Fragment>
     <tr>
       <th>{props.category}</th>
     </tr>
     <TableItems category={props.category} items={props.items} id={props.number}/>
-    </div>
+    </React.Fragment>
   )
 }
 function TableItems(props){
   return (
-    <div>
+    <React.Fragment>
       {props.items.map((it, ind) => {
         if(it.category == props.category){
         if(it.stocked == false){
@@ -194,7 +194,7 @@ function TableItems(props){
         else { return <tr key={ind}><td>{it.name}</td> <td>{it.price}</td></tr>}
         }
       })}
-      </div>
+      </React.Fragment>
   )
 }
 function TableNormal(props){

@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {InputTodo} from "./componentsPractices/inputsTodo";
 import {ProductTable} from "./componentsPractices/ProductTable";
 import {FilterableProductTable} from "./componentsPractices/ProductTableEx";
-import {EscogeColorAzul, CustomTextInput, NameForm, FileInput} from "./componentsPractices/learningReactJSX";
+import {EscogeColorAzul, CustomTextInput, NameForm, FileInput, HandlingPortals} from "./componentsPractices/learningReactJSX";
 
 
 //stylesheets
@@ -35,6 +35,7 @@ class App extends Component {
           <h1>Accesing a file with refs</h1>
           <FileInput />
           </div>
+          <HandlingPortals />
       </div>
     )
   }

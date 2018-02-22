@@ -47,4 +47,8 @@ de esta forma el bundle no quedará en el directorio raiz sino en la carpeta dis
 Con esto cada vez que se ejecute webpack o webpack -p los archivos de producción quedarán
 servidos en la carpeta dist. Importante recordar añadir el div raiz con el id (el que toma react para
 añadir los componentes )en el html ya que
-webpack -p no lo añade automáticamente.
+webpack -p no lo añade automáticamente. Si estoy utilizando el servidor de webpack para probar antes de producir
+entonces es necesario añadir al plugin HtmlWebpackPlugin dos propiedades adicionales. Las cuales son filename
+y template:   filename: 'index.html', template: './index.html'
+estas propiedades generarán en el archivo raiz una plantilla index.html que tendrá el div root para que
+react comience. De esta forma es posible utilizar webpack-dev-server para probar antes de producir. 

@@ -1,1 +1,55 @@
-h1,h2{color:blue;background-color:#f3e2c7}#todoApp{text-align:center;background-color:blue}#todoApp form{border:solid blue}#todoApp form button,#todoApp form ul{background-color:#f3e2c7;list-style:none}#todoApp form button{cursor:pointer}#todoApp form .X{color:blue;cursor:pointer}.component{border:3px solid}#productTable{background-color:silver;color:#000;text-align:center;height:100%;width:fit-content;margin:auto}input{display:block}.noStock{color:red}body{padding:5px}
+h1, h2 {
+  color: blue;
+  background-color: #f3e2c7; }
+#todoApp {
+  text-align: center;
+  background-color: blue; }
+  #todoApp form {
+    border: solid blue; }
+    #todoApp form ul, #todoApp form button {
+      background-color: #f3e2c7;
+      list-style: none; }
+    #todoApp form button {
+      cursor: pointer; }
+    #todoApp form .X {
+      color: blue;
+      cursor: pointer; }
+.component {
+  border: solid 3px; }
+#productTable {
+  background-color: silver;
+  color: black;
+  text-align: center;
+  height: 100%;
+  width: fit-content;
+  margin: auto; }
+
+input {
+  display: block; }
+
+.noStock {
+  color: red; }
+body {
+  padding: 5px; }
+#modal-root {
+  position: relative;
+  z-index: 999;
+  border: solid; }
+
+.app2 {
+  height: 10em;
+  width: 10em;
+  background: lightblue;
+  overflow: hidden;
+  border: solid; }
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center; }

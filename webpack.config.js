@@ -5,6 +5,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
  entry: "./index.js",
+ output: {
+   filename: '[name].[chunkhash].js',
+   path: path.resolve(__dirname, 'dist')
+ },
+
+ resolve: {
+   extensions: ['.js', '.es6']
+ },
+ watch : true,
  module: {
 
    loaders: [
@@ -37,18 +46,11 @@ module.exports = {
            allChunks: true
        }),
        new HtmlWebpackPlugin({
-            title: 'Caching'
+            title: 'Caching',
+            filename: 'index.html',
+            template: './index.html'
           })
    ],
-   output: {
-     filename: '[name].[chunkhash].js',
-     path: path.resolve(__dirname, 'dist')
-   },
-
- resolve: {
-   extensions: ['.js', '.es6']
- },
- watch : true
 }
 /*
 As you can see above, we have added three keys to our first loader.
