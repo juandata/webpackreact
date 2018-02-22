@@ -32,3 +32,19 @@ es mejor utilizar un typechecker más grande para proyectos más complejos. Por 
 https://reactjs.org/docs/static-type-checking.html
 npm install --save-dev flow-bin
 npm install remove-flow-types-loader --save-dev (webpack)
+
+4. Para crear un build optimizado para producción utilizar el siguiente comando:
+webpack -p y para utilizar un hash para evitar que los navegadores entreguen una página cacheada cuando
+hay cambios en el servidor es necesario seguir los siguientes pasos:
+1. INSTALAR html-webpack-plugin
+2-AGREGAR EN LA PARTE SUPERIOR DE WEBPACK CONFIG:
+ const path = require('path');
+ const HtmlWebpackPlugin = require('html-webpack-plugin');
+CAMBIAR EL OBJETO OUTPUT MOVIÉNDOLO HACIA LA PARTE INFERIOR (ANTES DE RESOLVE Y DESPUÉS DE PLUGINS) y
+cambiar el valor de la propiedad filename de bundle.js a '[name].[chunkhash].js',
+añadir también la propiedad path: path.resolve(__dirname, 'dist')
+de esta forma el bundle no quedará en el directorio raiz sino en la carpeta dist.
+Con esto cada vez que se ejecute webpack o webpack -p los archivos de producción quedarán
+servidos en la carpeta dist. Importante recordar añadir el div raiz con el id (el que toma react para
+añadir los componentes )en el html ya que
+webpack -p no lo añade automáticamente.

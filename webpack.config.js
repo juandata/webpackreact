@@ -1,11 +1,10 @@
+const path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 module.exports = {
  entry: "./index.js",
- output: {
-   filename: "bundle.js"
- },
-
  module: {
 
    loaders: [
@@ -36,8 +35,15 @@ module.exports = {
  plugins: [
        new ExtractTextPlugin('public/style.css', {
            allChunks: true
-       })
+       }),
+       new HtmlWebpackPlugin({
+            title: 'Caching'
+          })
    ],
+   output: {
+     filename: '[name].[chunkhash].js',
+     path: path.resolve(__dirname, 'dist')
+   },
 
  resolve: {
    extensions: ['.js', '.es6']
